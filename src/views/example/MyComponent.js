@@ -16,6 +16,12 @@ class MyComponent extends Component {
   /**
    * Mot khi gia tri trong state thay doi, thi gia tri tren component se thay doi, ma khong can refresh lai trang
    */
+
+  /**
+   * Dom: tat ca cac phan tu cau hinh len website
+   * Dom Event: Tat ca cac su kien say ra tren website cua chung ta
+   */
+
   state = {
     name : 'Phuc Do',
     age:21
@@ -29,6 +35,12 @@ class MyComponent extends Component {
       }
     )
   }
+
+  //ham bat su click cua nut
+  handleClickButton = () => {
+    console.log('hit button');
+    alert('click me')
+  } 
 
   //Muon render ra noi dung thi can khai bao render(){return()}
   render() {
@@ -50,6 +62,13 @@ class MyComponent extends Component {
         </div>
         <div className="second">
             I am {this.state['age']} year old!
+        </div>
+
+        <div className="third">
+          {/* cu phap khai bao mot arrow function */}
+          <button onClick={ () => this.handleClickButton() }>
+            Click me
+          </button>
         </div>
       </>
     );
