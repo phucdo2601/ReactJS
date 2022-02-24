@@ -23,15 +23,23 @@ class MyComponent extends Component {
    */
 
   state = {
-    name : 'Phuc Do',
+    name : '',
     age:21
   }
 
   //ham bat su kien thay doi cua giao dien
   handleOnChangeName = (event) =>{
+    // event.target.value: de lay gia tri input cua bien hien tai
+    // console.log(event.target.value, 'event target: ', event.target, 'event object: ', event);
+    /**
+     * tu dong merge
+     * Moi lan goi, ngay lap tuc cap nhap bien state, goi lai ham render (re-render)
+     * ham de thay doi trang thai cua state: this.setState({})
+     */
     this.setState(
       {
-        name: event.target.value
+        name: event.target.value,
+        age: 22
       }
     )
   }
@@ -44,7 +52,7 @@ class MyComponent extends Component {
 
   //Muon render ra noi dung thi can khai bao render(){return()}
   render() {
-
+    console.log('>>> call render: ',  this.state);
     return (
       //dung mot dau ngoac nhon de gan ten bien muon in trong components
 
