@@ -22,37 +22,37 @@ class MyComponent extends Component {
    * Dom Event: Tat ca cac su kien say ra tren website cua chung ta
    */
 
+  //key:value
   state = {
-    name : '',
-    age:21
+    firstName : '',
+    lastName : ''
   }
 
-  //ham bat su kien thay doi cua giao dien
-  handleOnChangeName = (event) =>{
-    // event.target.value: de lay gia tri input cua bien hien tai
-    // console.log(event.target.value, 'event target: ', event.target, 'event object: ', event);
-    /**
-     * tu dong merge
-     * Moi lan goi, ngay lap tuc cap nhap bien state, goi lai ham render (re-render)
-     * ham de thay doi trang thai cua state: this.setState({})
-     */
-    this.setState(
+  handleChangeFirstName = (event) => {
+    this.setState (
       {
-        name: event.target.value,
-        age: 22
+        firstName: event.target.value,
       }
     )
   }
 
-  //ham bat su click cua nut
-  handleClickButton = () => {
-    console.log('hit button');
-    alert('click me')
-  } 
+  handleChangeLastName = (event) => {
+    this.setState(
+      {
+        lastName: event.target.value
+      }
+    )
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(">>> check data input: ", this.state);
+    alert('Click me')
+  }
 
   //Muon render ra noi dung thi can khai bao render(){return()}
   render() {
-    console.log('>>> call render: ',  this.state);
+    console.log(">>> call render: ", this.state);
     return (
       //dung mot dau ngoac nhon de gan ten bien muon in trong components
 
@@ -60,24 +60,22 @@ class MyComponent extends Component {
 
       //lay mot bien trong state
       <>
-        <div className="first">
-          <input
-          value={this.state.name} type="text"
-            onChange={(event) => this.handleOnChangeName(event)}
+        <form action="/action_page.php">
+          <label htmlFor="fname">First name:</label>
+          <br />
+          <input type="text" value= {this.state.firstName} 
+          onChange={(event) => this.handleChangeFirstName(event) }/>
+          <br />
+          <label htmlFor="lname">Last name:</label>
+          <br />
+          <input type="text" value={this.state.lastName} 
+            onChange={(event) => this.handleChangeLastName(event)}/>
+          <br />
+          <br />
+          <input type="submit" value="Submit"
+            onClick={(event) => this.handleSubmit(event)}
           />
-          
-          Hello My Component by {this.state.name}!
-        </div>
-        <div className="second">
-            I am {this.state['age']} year old!
-        </div>
-
-        <div className="third">
-          {/* cu phap khai bao mot arrow function */}
-          <button onClick={ () => this.handleClickButton() }>
-            Click me
-          </button>
-        </div>
+        </form>
       </>
     );
   }
