@@ -26,7 +26,18 @@ class MyComponent extends Component {
   //key:value
   state = {
     firstName : '',
-    lastName : ''
+    lastName : '',
+    arrJobs : [
+      {
+        id: "test01", title: 'developer', salary: '500 $'
+      },
+      {
+        id: "test02", title: 'tester', salary: '400 $'
+      },
+      {
+        id: "test03", title: 'Project manager', salary: '1000 $'
+      },
+    ]
   }
 
   handleChangeFirstName = (event) => {
@@ -87,12 +98,12 @@ class MyComponent extends Component {
         </form>
 
         <ChildComponent 
-          name = {'child one'}
+          name = {this.state.firstName}
           age = {21}
+          address = {'Ho Chi Minh'}
+          arrJobs = { this.state.arrJobs }
           />
-        <ChildComponent name = {'child two'}/>
-        <ChildComponent name = {'child three'}/>
-
+      
         
       </>
     );
