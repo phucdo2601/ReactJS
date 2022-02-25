@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import ChildComponent from "./ChildComponent";
 
 /**
  * JSX: cho phep mot ham cua javascript tra ra doan code html, va dinh nghia cac bien
@@ -76,6 +77,10 @@ class MyComponent extends Component {
             onClick={(event) => this.handleSubmit(event)}
           />
         </form>
+
+        <ChildComponent name = {'child one'}/>
+        <ChildComponent name = {'child two'}/>
+        <ChildComponent name = {'child three'}/>
       </>
     );
   }
