@@ -9,7 +9,9 @@ import MyComponent from './example/MyComponent';
 
 /**
  * 2 components: class component/ function component(function, arrow)
- * 
+ * JSX
+ * stateful la co state: class component
+ * stateLess la khong co state: function component
  * 
  * @returns 
  */
