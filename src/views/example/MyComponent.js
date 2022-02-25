@@ -45,6 +45,16 @@ class MyComponent extends Component {
     ],
   };
 
+  addNewJob = (job) => {
+    // let currentJobs = this.state.arrJobs;
+
+    console.log("check job from parent: ", job);
+
+    this.setState({
+      arrJobs: [...this.state.arrJobs, job],
+    });
+  };
+
   /**
    *
    * @returns props : proerty la nhung gi minh truyen di hoac cho di
@@ -64,7 +74,7 @@ class MyComponent extends Component {
       //lay mot bien trong state
 
       <>
-        <AddComponent />
+        <AddComponent addNewJob={this.addNewJob} />
 
         <ChildComponent arrJobs={this.state.arrJobs} />
       </>
