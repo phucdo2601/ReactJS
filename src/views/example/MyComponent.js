@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import ChildComponent from "./ChildComponent";
+import AddComponent from "./AddComponent";
 
 /**
  * JSX: cho phep mot ham cua javascript tra ra doan code html, va dinh nghia cac bien
@@ -25,48 +26,30 @@ class MyComponent extends Component {
 
   //key:value
   state = {
-    firstName : '',
-    lastName : '',
-    arrJobs : [
+    arrJobs: [
       {
-        id: "test01", title: 'developer', salary: 500
+        id: "test01",
+        title: "developer",
+        salary: 500,
       },
       {
-        id: "test02", title: 'tester', salary: 400
+        id: "test02",
+        title: "tester",
+        salary: 400,
       },
       {
-        id: "test03", title: 'Project manager', salary: 1000
+        id: "test03",
+        title: "Project manager",
+        salary: 1000,
       },
-    ]
-  }
-
-  handleChangeFirstName = (event) => {
-    this.setState (
-      {
-        firstName: event.target.value,
-      }
-    )
-  }
-
-  handleChangeLastName = (event) => {
-    this.setState(
-      {
-        lastName: event.target.value
-      }
-    )
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(">>> check data input: ", this.state);
-    alert('Click me')
-  }
+    ],
+  };
 
   /**
-   * 
+   *
    * @returns props : proerty la nhung gi minh truyen di hoac cho di
-   * props giai quyet van de truyen data cua react 
-   * truyen tu tren xuong duoi 
+   * props giai quyet van de truyen data cua react
+   * truyen tu tren xuong duoi
    * Tac dung truyen props: tai su dung dc code
    */
 
@@ -79,32 +62,11 @@ class MyComponent extends Component {
       //boc ben ngoai co the tra ve nhieu khoi
 
       //lay mot bien trong state
-      <>
-        <form action="/action_page.php">
-          <label htmlFor="fname">First name:</label>
-          <br />
-          <input type="text" value= {this.state.firstName} 
-          onChange={(event) => this.handleChangeFirstName(event) }/>
-          <br />
-          <label htmlFor="lname">Last name:</label>
-          <br />
-          <input type="text" value={this.state.lastName} 
-            onChange={(event) => this.handleChangeLastName(event)}/>
-          <br />
-          <br />
-          <input type="submit" value="Submit"
-            onClick={(event) => this.handleSubmit(event)}
-          />
-        </form>
 
-        <ChildComponent 
-          name = {this.state.firstName}
-          age = {21}
-          address = {'Ho Chi Minh'}
-          arrJobs = { this.state.arrJobs }
-          />
-      
-        
+      <>
+        <AddComponent />
+
+        <ChildComponent arrJobs={this.state.arrJobs} />
       </>
     );
   }
