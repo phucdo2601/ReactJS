@@ -48,10 +48,22 @@ class MyComponent extends Component {
   addNewJob = (job) => {
     // let currentJobs = this.state.arrJobs;
 
+    //cach lam can ban de them mot phan tu vao mang
     console.log("check job from parent: ", job);
-
+    let currentJobs = this.state.arrJobs;
+    currentJobs.push(job);
     this.setState({
-      arrJobs: [...this.state.arrJobs, job],
+      // cach viet ngan gon de them phan tu vao mang
+      // arrJobs: [...this.state.arrJobs, job],
+      arrJobs: currentJobs,
+    });
+  };
+
+  deleteAJob = (job) => {
+    let currentJobs = this.state.arrJobs;
+    currentJobs = currentJobs.filter((item) => item.id !== job.id);
+    this.setState({
+      arrJobs: currentJobs,
     });
   };
 
@@ -76,7 +88,10 @@ class MyComponent extends Component {
       <>
         <AddComponent addNewJob={this.addNewJob} />
 
-        <ChildComponent arrJobs={this.state.arrJobs} />
+        <ChildComponent
+          arrJobs={this.state.arrJobs}
+          deleteAJob={this.deleteAJob}
+        />
       </>
     );
   }
