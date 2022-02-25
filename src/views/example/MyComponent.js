@@ -51,6 +51,14 @@ class MyComponent extends Component {
     alert('Click me')
   }
 
+  /**
+   * 
+   * @returns props : proerty la nhung gi minh truyen di hoac cho di
+   * props giai quyet van de truyen data cua react 
+   * truyen tu tren xuong duoi 
+   * Tac dung truyen props: tai su dung dc code
+   */
+
   //Muon render ra noi dung thi can khai bao render(){return()}
   render() {
     console.log(">>> call render: ", this.state);
@@ -78,9 +86,14 @@ class MyComponent extends Component {
           />
         </form>
 
-        <ChildComponent name = {'child one'}/>
+        <ChildComponent 
+          name = {'child one'}
+          age = {21}
+          />
         <ChildComponent name = {'child two'}/>
         <ChildComponent name = {'child three'}/>
+
+        
       </>
     );
   }

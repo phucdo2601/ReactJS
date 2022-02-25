@@ -31,7 +31,17 @@ export class ChildComponent extends Component {
 
   //Muon render ra noi dung thi can khai bao render(){return()}
   render() {
-    console.log(">>> call render: ", this.state);
+      // this.props: kiem tra du lieu tu thang cha truyen xuong thang con
+    // console.log(">>> Check props: ", this.props);
+    // let name = this.props.name;
+    // let age = this.props.age;
+
+    //cu phap go ngan cua gan tien bien 
+    /**
+     * Dung dc cu phap nay khi va chi khi cu phap ten bien trung voi key cua props truyen di
+     */
+    let {name, age } = this.props;
+
     return (
       //dung mot dau ngoac nhon de gan ten bien muon in trong components
 
@@ -40,7 +50,7 @@ export class ChildComponent extends Component {
       //lay mot bien trong state
       <>
        <div>
-           Child component: {this.props.name}
+           Child component: {name}, My age is {age + 7}
        </div>
       </>
     );
