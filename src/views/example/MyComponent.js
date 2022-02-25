@@ -29,13 +29,13 @@ class MyComponent extends Component {
     lastName : '',
     arrJobs : [
       {
-        id: "test01", title: 'developer', salary: '500 $'
+        id: "test01", title: 'developer', salary: 500
       },
       {
-        id: "test02", title: 'tester', salary: '400 $'
+        id: "test02", title: 'tester', salary: 400
       },
       {
-        id: "test03", title: 'Project manager', salary: '1000 $'
+        id: "test03", title: 'Project manager', salary: 1000
       },
     ]
   }

@@ -1,83 +1,58 @@
 import React, { Component } from 'react'
 
 //nen dung class component
-// export class ChildComponent extends Component {
-//   //key:value
+export class ChildComponent extends Component {
+  //key:value
+    state = {
+        showJobs: false,
+    }
 
-//   handleChangeFirstName = (event) => {
-//     this.setState (
-//       {
-//         firstName: event.target.value,
-//       }
-//     )
-//   }
+    //function conditional show hide button
+    handleShowhide = (status) => {
+        this.setState({
+            showJobs: !this.state.showJobs
+        })
+    }
 
-//   handleChangeLastName = (event) => {
-//     this.setState(
-//       {
-//         lastName: event.target.value
-//       }
-//     )
-//   }
+  //Muon render ra noi dung thi can khai bao render(){return()}
+  render() {
+      // this.props: kiem tra du lieu tu thang cha truyen xuong thang con
+    // console.log(">>> Check props: ", this.props);
+    // let name = this.props.name;
+    // let age = this.props.age;
 
-//   handleSubmit = (event) => {
-//     event.preventDefault();
-//     console.log(">>> check data input: ", this.state);
-//     alert('Click me')
-//   }
-
-//   //Muon render ra noi dung thi can khai bao render(){return()}
-//   render() {
-//       // this.props: kiem tra du lieu tu thang cha truyen xuong thang con
-//     // console.log(">>> Check props: ", this.props);
-//     // let name = this.props.name;
-//     // let age = this.props.age;
-
-//     //cu phap go ngan cua gan tien bien 
-//     /**
-//      * Dung dc cu phap nay khi va chi khi cu phap ten bien trung voi key cua props truyen di
-//      */
-//     let {name, age, address, arrJobs } = this.props;
-//     let a = '';
-
-//     return (
-//       //dung mot dau ngoac nhon de gan ten bien muon in trong components
-
-//       //boc ben ngoai co the tra ve nhieu khoi
-
-//       //lay mot bien trong state
-//       <>
-//        <div className="job-list">
-//            Child component: My name is {name}, My age is {age + 7}, My address is {address}
-//            {
-//                a= arrJobs.map((item, index) =>{
-//                    return (
-//                        //nen sinh khoa key khi nhan data tu cha sang con
-//                        <div key={item.id}>
-//                            {item.title} - {item.salary}
-//                        </div>
-//                    )
-//                })
-               
-//            }
-//            {console.log('>> check map array: ', a)}
-//        </div>
-//       </>
-//     );
-//   }
-// }
-
-//lay bien du lieu tu thang cha sang con thi them prop trong kieu du lieu truyen vao(function component)
-const ChildComponent = (props) => {
-    console.log('>>> check child props', props);
+    //cu phap go ngan cua gan tien bien 
     /**
-     * Khong can keyword this. truoc props boi vi chung ta lay thang tu props truyen vao o tren
+     * Dung dc cu phap nay khi va chi khi cu phap ten bien trung voi key cua props truyen di
      */
-    let {arrJobs} = props;
+    let {name, age, address, arrJobs } = this.props;
+    let {showJobs} = this.state;
+
+    let check = showJobs === true ? 'showJobs = true' : 'showJobs = false'
+    let a = '';
+
     return (
-        <div>
-            {
-               arrJobs.map((item, index) =>{
+      //dung mot dau ngoac nhon de gan ten bien muon in trong components
+
+      //boc ben ngoai co the tra ve nhieu khoi
+
+      //lay mot bien trong state
+      <>
+      {/* dung toan tu 3 ngoi */}
+      {showJobs === false ? <div>
+          <button
+            onClick={()=> this.handleShowhide()}
+          >
+          Show
+          </button>
+          
+          </div>
+        :
+        <>
+       <div className="job-list">
+           Child component: My name is {name}, My age is {age + 7}, My address is {address}
+           {
+               a= arrJobs.map((item, index) =>{
                    return (
                        //nen sinh khoa key khi nhan data tu cha sang con
                        <div key={item.id}>
@@ -87,9 +62,48 @@ const ChildComponent = (props) => {
                })
                
            }
-
-        </div>
-    )
+           {console.log('>> check map array: ', a)}
+       </div>
+        <div><button
+             onClick={()=> this.handleShowhide()}
+        >
+        Hide
+        </button></div>
+        </>
+       }  
+      
+      </>
+    );
+  }
 }
+
+//lay bien du lieu tu thang cha sang con thi them prop trong kieu du lieu truyen vao(function component)
+// const ChildComponent = (props) => {
+//     console.log('>>> check child props', props);
+//     /**
+//      * Khong can keyword this. truoc props boi vi chung ta lay thang tu props truyen vao o tren
+//      */
+//     let {arrJobs} = props;
+//     return (
+//         <div>
+//             {
+//                arrJobs.map((item, index) =>{
+//                 if(item.salary >= 500) {
+//                     return (
+                       
+//                         //nen sinh khoa key khi nhan data tu cha sang con
+//                         <div key={item.id}>
+//                             {item.title} - {item.salary}
+//                         </div>
+//                     )        
+//                 }
+                   
+//                })
+               
+//            }
+
+//         </div>
+//     )
+// }
 
 export default ChildComponent
