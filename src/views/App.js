@@ -1,10 +1,13 @@
-import logo from './logo.svg';
-import './App.scss';
-import MyComponent from './example/MyComponent';
+import logo from "./logo.svg";
+import "./App.scss";
+import MyComponent from "./example/MyComponent";
+import ListToDo from "./Todos/ListToDo";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /**
  * Component giup chia cac ui thanh cac khoi doc lap co the tai su dung
- * @returns 
+ * @returns
  */
 
 /**
@@ -12,19 +15,19 @@ import MyComponent from './example/MyComponent';
  * JSX
  * stateful la co state: class component
  * stateLess la khong co state: function component
- * 
- * @returns 
+ *
+ * @returns
  */
 
 /**
  * Basic function: ex: function nameFunc() {.... code ....}
- * @returns 
+ * @returns
  */
 
 /**
  * arrow function: ex: const  nameFunc =() =>{....code....}
- * 
- * @returns 
+ *
+ * @returns
  */
 
 //arrow
@@ -34,14 +37,27 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World with react!
-        </p>
-          
-        <MyComponent/>
+        <p>Simple Todo App with ReactJS(PhucDn &amp; Practice)</p>
+
+        {/* <MyComponent /> */}
+
+        {/* List Todo App With ReactJS */}
+        <ListToDo />
       </header>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
-}
+};
 
 export default App;
