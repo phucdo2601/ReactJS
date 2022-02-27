@@ -19,6 +19,7 @@ class AddToDo extends Component {
   handleAddTodo = () => {
     if (!this.state.title) {
       //if(undefined/null/empty) => false: se khong thuc hien
+      //muon co toast nay thi them thu vien yarn add react-toastify
       toast.warning("missing title!");
       return;
     }

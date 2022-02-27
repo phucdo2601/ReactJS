@@ -45,6 +45,8 @@ const App = () => {
         <ListToDo />
       </header>
 
+      {/* them thu vien yarn add react-toastify */}
+      {/* them dinh dang popup notification */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
