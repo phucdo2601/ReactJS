@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../Todos/ListTodo.scss";
 import AddToDo from "./AddToDo";
 import { toast } from "react-toastify";
+import Color from "../HOC/Color";
 
 class ListToDo extends Component {
   state = {
@@ -163,4 +164,4 @@ class ListToDo extends Component {
 }
 
 //de cac file khac goi class nay
-export default ListToDo;
+export default Color(ListToDo);

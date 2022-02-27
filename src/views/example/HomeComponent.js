@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import Color from "../HOC/Color";
 
 class HomeComponent extends Component {
   componentDidMount() {
     //   ham nay se chay sau bao nhieu giay se thuc hien noi dung ben trong doan code
-    setTimeout(() => {
-      console.log("check timeout");
-      //   de dung dc ham history thi phai cai export bang withRouter
-      this.props.history.push("/todo");
-    }, 3000);
+    // setTimeout(() => {
+    //   console.log("check timeout");
+    //   //   de dung dc ham history thi phai cai export bang withRouter
+    //   this.props.history.push("/todo");
+    // }, 3000);
   }
 
   //HOC: Higher order component
@@ -23,4 +24,5 @@ class HomeComponent extends Component {
 }
 
 //De cac component khac tiep nhan dc component nay
-export default withRouter(HomeComponent);
+// export default withRouter(HomeComponent);
+export default Color(HomeComponent);
