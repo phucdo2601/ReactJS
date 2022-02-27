@@ -4,6 +4,10 @@ import MyComponent from "./example/MyComponent";
 import ListToDo from "./Todos/ListToDo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Nav from "./Nav/Nav";
+import HomeComponent from "./example/HomeComponent";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 /**
  * Component giup chia cac ui thanh cac khoi doc lap co the tai su dung
@@ -34,31 +38,49 @@ import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   //khi return la mot ham xu ly giao dien
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Simple Todo App with ReactJS(PhucDn &amp; Practice)</p>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Nav />
 
-        {/* <MyComponent /> */}
+          <img src={logo} className="App-logo" alt="logo" />
 
-        {/* List Todo App With ReactJS */}
-        <ListToDo />
-      </header>
+          {/* <MyComponent /> */}
 
-      {/* them thu vien yarn add react-toastify */}
-      {/* them dinh dang popup notification */}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-    </div>
+          {/* List Todo App With ReactJS */}
+          {/* <ListToDo /> */}
+
+          {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+          <Switch>
+            {/* dung / thi pha them tu khoa exact thi chi khi nao click chinh xac vao component co / thi no moi chuyen den component co chua ndung / */}
+            <Route path="/" exact>
+              <HomeComponent />
+            </Route>
+            <Route path="/todo">
+              <ListToDo />
+            </Route>
+            <Route path="/about">
+              <MyComponent />
+            </Route>
+          </Switch>
+        </header>
+
+        {/* them thu vien yarn add react-toastify */}
+        {/* them dinh dang popup notification */}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
+    </Router>
   );
 };
 
