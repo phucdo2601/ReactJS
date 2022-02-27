@@ -59,6 +59,22 @@ class MyComponent extends Component {
     });
   };
 
+  //ham nay dung de load API get du lieu: componentDidMount load mot lan
+  componentDidMount() {
+    console.log(">> run component did mount.");
+  }
+
+  //so sanh hien tai va tuong lai khi  goi api
+  componentDidUpdate(prevProps, prevState) {
+    console.log(
+      ">>> run didUpdate: ",
+      "prevState: ",
+      prevState,
+      " currentState: ",
+      this.state
+    );
+  }
+
   deleteAJob = (job) => {
     let currentJobs = this.state.arrJobs;
     currentJobs = currentJobs.filter((item) => item.id !== job.id);
