@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Demo.scss";
 
 //nen dung class component
 export class ChildComponent extends Component {
@@ -47,7 +48,13 @@ export class ChildComponent extends Component {
         {/* dung toan tu 3 ngoi */}
         {showJobs === false ? (
           <div>
-            <button onClick={() => this.handleShowhide()}>Show</button>
+            {/* khong nen dung in-line style */}
+            <button
+              style={{ color: "red" }}
+              onClick={() => this.handleShowhide()}
+            >
+              Show
+            </button>
           </div>
         ) : (
           <>
