@@ -44,6 +44,11 @@ import DetailUser from "./Users/DetailUser";
  * @returns
  */
 
+/**
+ * Cai dat thu vien chinh xac version
+ * npm install --save-exact nameLib@version
+ */
+
 //arrow
 const App = () => {
   //khi return la mot ham xu ly giao dien
