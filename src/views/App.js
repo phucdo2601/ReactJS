@@ -8,7 +8,14 @@ import Nav from "./Nav/Nav";
 import HomeComponent from "./example/HomeComponent";
 import ListUser from "./Users/ListUser";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Routes,
+} from "react-router-dom";
+import DetailUser from "./Users/DetailUser";
 
 /**
  * Component giup chia cac ui thanh cac khoi doc lap co the tai su dung
@@ -53,8 +60,8 @@ const App = () => {
 
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
+          {/* dung / thi pha them tu khoa exact thi chi khi nao click chinh xac vao component co / thi no moi chuyen den component co chua ndung / */}
           <Switch>
-            {/* dung / thi pha them tu khoa exact thi chi khi nao click chinh xac vao component co / thi no moi chuyen den component co chua ndung / */}
             <Route path="/" exact>
               <HomeComponent />
             </Route>
@@ -64,10 +71,25 @@ const App = () => {
             <Route path="/about">
               <MyComponent />
             </Route>
-            <Route path="/user">
+            <Route path="/user" exact>
               <ListUser />
             </Route>
+
+            <Route path="/user/:id">
+              <DetailUser />
+            </Route>
           </Switch>
+
+          {/* Routes nay la cua react-router-dom phien ban 6 : v6.2.1: 
+                npm i react-router-dom
+                o phien ban nay chua ho tro withRoute
+            */}
+          {/* <Routes>
+            <Route path="/" element={<HomeComponent />} />
+            <Route path="/user" element={<ListUser />} />
+            <Route path="/about" element={<MyComponent />} />
+            <Route path="/user/:id" element={<DetailUser />} />
+          </Routes> */}
         </header>
 
         {/* them thu vien yarn add react-toastify */}

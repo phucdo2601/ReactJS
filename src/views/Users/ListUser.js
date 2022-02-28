@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../Users/ListUser.scss";
+import { withRouter } from "react-router-dom";
 
 class ListUser extends Component {
   state = {
@@ -26,23 +27,36 @@ class ListUser extends Component {
     });
   }
 
+  handleViewDetailUser = (user) => {
+    // console.log("check user: ", this.props);
+    //day id qua trang detail user
+    //gan bien trong react
+    this.props.history.push(`/user/${user.id}`);
+  };
+
   render() {
     let { listUsers } = this.state;
     return (
       <div className="list-user-container">
         <div className="title">Fetch All List Users</div>
-        {listUsers &&
-          listUsers.length > 0 &&
-          listUsers.map((item, index) => {
-            return (
-              <div className="child" key={item.id}>
-                {item.id} - {item.email} - {item.first_name}
-              </div>
-            );
-          })}
+        <div className="list-user-content">
+          {listUsers &&
+            listUsers.length > 0 &&
+            listUsers.map((item, index) => {
+              return (
+                <div
+                  className="child"
+                  key={item.id}
+                  onClick={() => this.handleViewDetailUser(item)}
+                >
+                  {item.id} - {item.email}
+                </div>
+              );
+            })}
+        </div>
       </div>
     );
   }
 }
 
-export default ListUser;
+export default withRouter(ListUser);
