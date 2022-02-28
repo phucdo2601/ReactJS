@@ -8,6 +8,10 @@ const initState = {
       id: 2,
       name: "Le Vinh",
     },
+    {
+      id: 3,
+      name: "Khanh Tram",
+    },
   ],
 };
 

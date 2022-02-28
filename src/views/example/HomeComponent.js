@@ -3,6 +3,8 @@ import { withRouter } from "react-router";
 import Color from "../HOC/Color";
 import logo from "../../assets/images/test1.jpg";
 
+import { connect } from "react-redux";
+
 class HomeComponent extends Component {
   componentDidMount() {
     //   ham nay se chay sau bao nhieu giay se thuc hien noi dung ben trong doan code
@@ -19,7 +21,7 @@ class HomeComponent extends Component {
    * @returns
    */
   render() {
-    console.log(">>> check props: ", this.props);
+    console.log(">>> check props redux: ", this.props.dataRedux);
     return (
       <>
         <div>Hello world from HomePage with PhucDn</div>;
@@ -34,4 +36,15 @@ class HomeComponent extends Component {
 
 //De cac component khac tiep nhan dc component nay
 // export default withRouter(HomeComponent);
-export default Color(HomeComponent);
+
+/**
+ * trong truong hop nay, state la cua redux
+ */
+const mapStateToProps = (state) => {
+  return {
+    //dat ten bat ki la gi
+    dataRedux: state.users,
+  };
+};
+
+export default connect(mapStateToProps)(Color(HomeComponent));
