@@ -8,6 +8,8 @@ import Nav from "./Nav/Nav";
 import HomeComponent from "./example/HomeComponent";
 import ListUser from "./Users/ListUser";
 
+// import { Redirect, Route, Switch } from "react-router";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -50,17 +52,14 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <Nav />
-
           <img src={logo} className="App-logo" alt="logo" />
-
           {/* <MyComponent /> */}
-
           {/* List Todo App With ReactJS */}
           {/* <ListToDo /> */}
-
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           {/* dung / thi pha them tu khoa exact thi chi khi nao click chinh xac vao component co / thi no moi chuyen den component co chua ndung / */}
+          {/* Khi khong dung thang swich thi co the render ca 3 */}
           <Switch>
             <Route path="/" exact>
               <HomeComponent />
@@ -74,12 +73,10 @@ const App = () => {
             <Route path="/user" exact>
               <ListUser />
             </Route>
-
             <Route path="/user/:id">
               <DetailUser />
             </Route>
           </Switch>
-
           {/* Routes nay la cua react-router-dom phien ban 6 : v6.2.1: 
                 npm i react-router-dom
                 o phien ban nay chua ho tro withRoute
