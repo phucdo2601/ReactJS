@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import Color from "../HOC/Color";
+import logo from "../../assets/images/test1.jpg";
 
 class HomeComponent extends Component {
   componentDidMount() {
@@ -19,7 +20,15 @@ class HomeComponent extends Component {
    */
   render() {
     console.log(">>> check props: ", this.props);
-    return <div>Hello world from HomePage with PhucDn</div>;
+    return (
+      <>
+        <div>Hello world from HomePage with PhucDn</div>;
+        <div>
+          {/* khong add thang anh vao src, phai import anh vao mot ten bien, roi lay ten bien cho vo src */}
+          <img src={logo} style={{ width: "150px", height: "150px" }} />
+        </div>
+      </>
+    );
   }
 }
 
