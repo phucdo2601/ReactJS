@@ -8,7 +8,11 @@ import reportWebVitals from "./reportWebVitals";
 
 import "./styles/global.scss";
 
-const reduxStore = createStore(rootReducer);
+const reduxStore = createStore(
+  rootReducer,
+  //them cau lenh nay de trinh duyet co the chay dc redux dev tool
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <React.StrictMode>
