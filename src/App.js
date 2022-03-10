@@ -1,14 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
+/**
+ * Mot component bao gom:
+ * template +logic
+ * Doi voi create se co them JSX
+ * babel
+ */
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+//         <img src={logo} className="App-logo" alt="logo" />
+//         <p>Hello World By PhucDN!</p>
+//         <a
+//           className="App-link"
+//           href="https://reactjs.org"
+//           target="_blank"
+//           rel="noopener noreferrer"
+//         >
+//           Learn React
+//         </a>
+//       </header>
+//     </div>
+//   );
+// }
+
+/**
+ * Arrow function of js
+ * @returns
+ */
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <p>Hello World By PhucDN!</p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -20,6 +48,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;
