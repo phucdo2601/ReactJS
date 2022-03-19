@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Nav from "./components/Nav";
 
 /**
  * Mot component bao gom:
@@ -49,6 +50,8 @@ const App = () => {
 
   return (
     <div className="App">
+      {/* Chi dung <Nav></Nav> Khi va chi khi muon chuyen noi dung co comp dc goi */}
+      <Nav />
       {console.log("check obj: ", obj)}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
