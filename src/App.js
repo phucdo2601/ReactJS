@@ -58,14 +58,22 @@ const App = () => {
     {
       id: "todo1",
       title: "test-01",
+      type: "phucdn-test",
     },
     {
       id: "todo2",
       title: "test-02",
+      type: "type-t-02",
     },
     {
       id: "todo3",
       title: "test-03",
+      type: "phucdn-test",
+    },
+    {
+      id: "todo4",
+      title: "test-04",
+      type: "type-t-04",
     },
   ]);
 
@@ -88,6 +96,7 @@ const App = () => {
     let newTodo = {
       id: "abc",
       title: address,
+      type: "phucdn-test",
     };
     setTodos([...todos, newTodo]);
   };
@@ -111,11 +120,17 @@ const App = () => {
        *    top => bottom
        * )
        */}
-      <Nav />
+
       <header className="App-header">
+        <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello World By {name} !</p>
         <Todo myData={todos} title={"All to do"} />
+
+        <Todo
+          myData={todos.filter((item) => item.type === "phucdn-test")}
+          title={"phucdn-test to do"}
+        />
         <input
           type="text"
           value={address}

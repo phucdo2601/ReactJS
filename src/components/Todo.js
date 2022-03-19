@@ -10,6 +10,7 @@ const Todo = (props) => {
   return (
     <>
       <div className="todos-container">
+        <div className="title">{props.title}</div>
         {todos.map((todo) => {
           console.log(">>>check todo: ", todo);
           return (
@@ -19,6 +20,8 @@ const Todo = (props) => {
             </li>
           );
         })}
+
+        <hr />
       </div>
     </>
   );
