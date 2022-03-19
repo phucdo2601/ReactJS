@@ -43,37 +43,37 @@ const App = () => {
    */
 
   let name = "PhucDn";
-  let age = 22;
-  let boolean = true;
-  let obj = {
-    name: "PhucDn",
-    age: 22,
-  };
 
-  let link = "https://www.facebook.com/profile.php?id=100034519140023";
+  //dinh nghia ham trong function component in react_js
+
+  const handleEventClick = (event) => {
+    console.log(">>> Click me", event.target.value);
+  };
 
   return (
     <div className="App">
       {/* Chi dung <Nav></Nav> Khi va chi khi muon chuyen noi dung co comp dc goi */}
       <Nav />
-      {console.log("check obj: ", obj)}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World By {name} and He is {obj.age}!
-        </p>
-        {/* su dung inline-style */}
-        <p style={{ color: "green", fontSize: "20px", marginTop: "20px" }}>
-          {JSON.stringify(obj)}
-        </p>
-        <a
-          className="App-link"
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
+        <p>Hello World By {name} !</p>
+
+        <input
+          type="text"
+          value="PhucDn"
+          onClick={(event) => {
+            handleEventClick(event);
+          }}
+        />
+
+        <button
+          type="button"
+          onClick={(event) => {
+            handleEventClick(event);
+          }}
         >
-          Go to my PhucDn Facebook
-        </a>
+          Click Me
+        </button>
       </header>
     </div>
   );
