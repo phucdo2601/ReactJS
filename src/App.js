@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Nav from "./components/Nav";
+import { useState } from "react";
 
 /**
  * Cai dat mot thu vien voi version xac dinh bang npm:
@@ -42,13 +43,33 @@ const App = () => {
    *
    */
 
-  let name = "PhucDn";
+  // let name = "PhucDn";
+
+  /**
+   * useState trong reactjs-hook:
+   * ban chat ham useState("Eric") se tra ra mot array, phan tu dau tien la ten bien, phan tu tiep theo la function xu ly
+   * lay phan tu tuan tu theo thu tu
+   * const la hang so, khong thay doi dc gia tri
+   */
+  let [name, setName] = useState("Eric"); //[a1, b1, c1,...]
+  const [address, setAddress] = useState("");
 
   //dinh nghia ham trong function component in react_js
 
   const handleEventClick = (event) => {
-    console.log(">>> Click me", event.target.value);
+    //set lai gia tri trong ham cua state
+    setName(address);
+    console.log(address);
   };
+
+  const handleOnChangeInput = (event) => {
+    setAddress(event.target.value);
+  };
+
+  /**
+   * Huong dan su dung useState in Reactjs-Hook:
+   * re-render
+   */
 
   return (
     <div className="App">
@@ -60,10 +81,8 @@ const App = () => {
 
         <input
           type="text"
-          value="PhucDn"
-          onClick={(event) => {
-            handleEventClick(event);
-          }}
+          value={address}
+          onChange={(event) => handleOnChangeInput(event)}
         />
 
         <button
