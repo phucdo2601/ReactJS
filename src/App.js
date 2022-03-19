@@ -3,6 +3,10 @@ import "./App.css";
 import Nav from "./components/Nav";
 
 /**
+ * Cai dat mot thu vien voi version xac dinh bang npm:
+ * npm install --save nameLib@ver
+ */
+/**
  * Mot component bao gom:
  * template +logic
  * Doi voi create se co them JSX
@@ -58,7 +62,10 @@ const App = () => {
         <p>
           Hello World By {name} and He is {obj.age}!
         </p>
-        <p>{JSON.stringify(obj)}</p>
+        {/* su dung inline-style */}
+        <p style={{ color: "green", fontSize: "20px", marginTop: "20px" }}>
+          {JSON.stringify(obj)}
+        </p>
         <a
           className="App-link"
           href={link}
