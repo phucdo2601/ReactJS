@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Nav from "./components/Nav";
 import { useState } from "react";
+import Todo from "./components/Todo";
 
 /**
  * Cai dat mot thu vien voi version xac dinh bang npm:
@@ -104,23 +105,17 @@ const App = () => {
     <div className="App">
       {/* Chi dung <Nav></Nav> Khi va chi khi muon chuyen noi dung co comp dc goi */}
       {/* su dung map de lap => tra ve mot array moi, khong bi anh huong den dl ma minh lap */}
+
+      {/**
+       * props = properties => phuc vu cho viec chuyen du lieu giua cac component (Chi Chuyen du lieu tu component cha xuong con
+       *    top => bottom
+       * )
+       */}
       <Nav />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello World By {name} !</p>
-
-        <div className="todos-container">
-          {todos.map((todo) => {
-            console.log(">>>check todo: ", todo);
-            return (
-              // can dat key de nang cao hieu nang reactjs, va bat su kien
-              <li className="todo-child" key={todo.id}>
-                {todo.title}
-              </li>
-            );
-          })}
-        </div>
-
+        <Todo myData={todos} title={"All to do"} />
         <input
           type="text"
           value={address}
