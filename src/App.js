@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Nav from "./components/Nav";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Todo from "./components/Todo";
 
 /**
@@ -116,10 +116,18 @@ const App = () => {
   };
 
   /**
+   * Huong dan hoc can ban useEffect
+   * ham useEffect chay khi nao: moi lan component update xong thi se chay vao ham useEffect
+   *
+   */
+  useEffect(() => {
+    console.log("run use effect");
+  });
+
+  /**
    * Huong dan su dung useState in Reactjs-Hook:
    * re-render
    */
-
   return (
     <div className="App">
       {/* Chi dung <Nav></Nav> Khi va chi khi muon chuyen noi dung co comp dc goi */}

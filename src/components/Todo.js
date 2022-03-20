@@ -6,7 +6,7 @@ const Todo = (props) => {
    */
 
   // const todos = props.myData;
-  console.log(">>> check props: ", props);
+  // console.log(">>> check props: ", props);
 
   //cach go han lay props tu chat
   /**
@@ -23,7 +23,7 @@ const Todo = (props) => {
       <div className="todos-container">
         <div className="title">{title}</div>
         {myData.map((todo) => {
-          console.log(">>>check todo: ", todo);
+          // console.log(">>>check todo: ", todo);
           return (
             // can dat key de nang cao hieu nang reactjs, va bat su kien
 
