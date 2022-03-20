@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 const Covid = () => {
   const [dataCovid, setDataCovid] = useState([]);
 
-  //dat bien chi trang thai
-  const [loading, setLoading] = useState(true);
+  //dat bien chi trang thai isLoading
+  const [isLoading, setIsLoading] = useState(true);
+
+  //dat bien chi error message
+  const [isError, setIsError] = useState(false);
 
   /**
    * Lay API data ve trong class component thi dung componentDidMount()
@@ -17,22 +20,36 @@ const Covid = () => {
 
   useEffect(async () => {
     setTimeout(async () => {
-      let res = await axios.get(
-        "https://api.covid19api.com/country/vietnam?from=2021-10-01T00:00:00Z&to=2021-10-20T00:00:00Z"
-      );
+      try {
+        let res = await axios.get(
+          "https://api.covid19api.com/country/vietnam?from=2021-10-01T00:00:00Z&to=2021-10-20T00:00:00Z"
+        );
 
-      let data = res && res.data ? res.data : [];
+        let data = res && res.data ? res.data : [];
 
-      if (data && data.length > 0) {
-        data.map((item) => {
-          item.Date = moment(item.Date).format("DD/MM/YYYY");
-        });
+        if (data && data.length > 0) {
+          data.map((item) => {
+            item.Date = moment(item.Date).format("DD/MM/YYYY");
+          });
 
-        data = data.reverse();
+          data = data.reverse();
+        }
+        console.log(">>> check set data: ", data);
+        setDataCovid(data);
+        setIsLoading(false);
+        setIsError(false);
+      } catch (error) {
+        // alert(error.message);
+
+        //khi co loi setIsError bang true
+        setIsError(true);
+        //khi khong load dc du lieu thi phai set isLoading === false de khong hien thi thong bao loading
+        setIsLoading(false);
+
+        // console.log("e >> check error: ", error);
+        // console.log(">>>error name: ", error.name);
+        // console.log(">>>error message:" + error.message);
       }
-      console.log(">>> check set data: ", data);
-      setDataCovid(data);
-      setLoading(false);
     }, 5000);
   }, []);
 
@@ -60,7 +77,7 @@ const Covid = () => {
           </tr>
         </thead>
         <tbody>
-          {loading === false &&
+          {isLoading === false &&
             dataCovid &&
             dataCovid.length > 0 &&
             dataCovid.map((item) => {
@@ -75,10 +92,18 @@ const Covid = () => {
               );
             })}
 
-          {loading === true && (
+          {isError === false && isLoading === true && (
             <tr>
               <td colSpan="5" style={{ textAlign: "center" }}>
                 Loading...
+              </td>
+            </tr>
+          )}
+
+          {isError === true && (
+            <tr>
+              <td colSpan="5" style={{ textAlign: "center", color: "red" }}>
+                Something Wrong....
               </td>
             </tr>
           )}
