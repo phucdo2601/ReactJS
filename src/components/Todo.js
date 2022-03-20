@@ -14,7 +14,7 @@ const Todo = (props) => {
    */
   const { myData, title, deleteDataTodo } = props;
   const handleDelete = (id) => {
-    alert(id);
+    // alert(id);
     deleteDataTodo(id);
   };
 

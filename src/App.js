@@ -120,9 +120,21 @@ const App = () => {
    * ham useEffect chay khi nao: moi lan component update xong thi se chay vao ham useEffect
    *
    */
+  /**
+   * Huong dan su dung useEffect dependencies
+   * Them mot mang sau khi khao bao su ly useEffect
+   * Viec them mot mang rong dang sau [], thi ham useEffect chi chay mot lan
+   *  (bang voi ham componentDidMount() trong class component)
+   * them addres vao mang rong de bao hieu cho useEffect biet khi nao bien address thay doi thi moi goi toi useEffect
+   *  Co the viec nhieu ham useEffect cung ko anh huong den viec chay code, giup dc clear code hon khi chay
+   */
   useEffect(() => {
-    console.log("run use effect");
-  });
+    console.log("run use effect address edit text");
+  }, [address]);
+
+  useEffect(() => {
+    console.log("run use effect todos");
+  }, [todos]);
 
   /**
    * Huong dan su dung useState in Reactjs-Hook:
