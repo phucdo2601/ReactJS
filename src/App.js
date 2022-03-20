@@ -94,7 +94,7 @@ const App = () => {
      * ...spread syntax array js
      */
     let newTodo = {
-      id: "abc",
+      id: Math.floor(Math.random() * 100000 + 1),
       title: address,
       type: "phucdn-test",
     };
@@ -103,6 +103,16 @@ const App = () => {
 
   const handleOnChangeInput = (event) => {
     setAddress(event.target.value);
+  };
+
+  const deleteDataTodo = (id) => {
+    //khong the dung truc tiep bien todos cua lop cha, phai goi mot bien khac, r gan gia tri cua no
+    /**
+     * Props chuyen Function tu cha xuong con
+     */
+    let currentTodos = todos;
+    currentTodos = currentTodos.filter((item) => item.id !== id);
+    setTodos(currentTodos);
   };
 
   /**
@@ -125,11 +135,16 @@ const App = () => {
         <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello World By {name} !</p>
-        <Todo myData={todos} title={"All to do"} />
+        <Todo
+          myData={todos}
+          title={"All to do"}
+          deleteDataTodo={deleteDataTodo}
+        />
 
         <Todo
           myData={todos.filter((item) => item.type === "phucdn-test")}
           title={"phucdn-test to do"}
+          deleteDataTodo={deleteDataTodo}
         />
         <input
           type="text"
