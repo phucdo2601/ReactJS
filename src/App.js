@@ -3,6 +3,7 @@ import "./App.css";
 import Nav from "./components/Nav";
 import { useEffect, useState } from "react";
 import Todo from "./components/Todo";
+import Covid from "./components/Covid";
 
 /**
  * Cai dat mot thu vien voi version xac dinh bang npm:
@@ -52,7 +53,7 @@ const App = () => {
    * lay phan tu tuan tu theo thu tu
    * const la hang so, khong thay doi dc gia tri
    */
-  let [name, setName] = useState("Eric"); //[a1, b1, c1,...]
+  let [name, setName] = useState("Phuc Dn"); //[a1, b1, c1,...]
   const [address, setAddress] = useState("");
   const [todos, setTodos] = useState([
     {
@@ -155,7 +156,7 @@ const App = () => {
         <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello World By {name} !</p>
-        <Todo
+        {/* <Todo
           myData={todos}
           title={"All to do"}
           deleteDataTodo={deleteDataTodo}
@@ -179,7 +180,9 @@ const App = () => {
           }}
         >
           Click Me
-        </button>
+        </button> */}
+
+        <Covid />
       </header>
     </div>
   );
