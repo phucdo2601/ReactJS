@@ -15,10 +15,15 @@ const Covid = () => {
   /**
    * Lay ngay hien tai vao luc 0h 0m 0s
    */
-  const today = new Date(new Date().setHours(0, 0, 0, 0));
+  // const today = new Date(new Date().setHours(0, 0, 0, 0));
+  //lay ngay ma khong bi doi thoi gian
+  const today = moment().startOf("day").toISOString(true);
 
   //bien lay ngay cua 30 ngay truoc
-  const priorDate = moment().subtract(31, "days");
+  const priorDate = moment()
+    .startOf("day")
+    .subtract(31, "days")
+    .toISOString(true);
 
   //goi toi custom hook
   // const {
@@ -35,7 +40,7 @@ const Covid = () => {
     isLoading,
     isError,
   } = useCovidFetch(
-    `https://api.covid19api.com/country/vietnam?from=${priorDate.toISOString()}&to=${today.toISOString()}`
+    `https://api.covid19api.com/country/vietnam?from=${priorDate}&to=${today}`
   );
 
   /**
