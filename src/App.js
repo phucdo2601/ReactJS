@@ -4,6 +4,11 @@ import Nav from "./components/Nav";
 import { useEffect, useState } from "react";
 import Todo from "./components/Todo";
 import Covid from "./components/Covid";
+/**
+ * ben component can import cai comp export nhieu cai them dau {} o ben ngoai
+ */
+import { Countdown } from "./components/Countdown";
+import CountDownByHook from "./components/CountDownByHook";
 
 /**
  * Cai dat mot thu vien voi version xac dinh bang npm:
@@ -137,6 +142,14 @@ const App = () => {
     console.log("run use effect todos");
   }, [todos]);
 
+  const onTimeUp = () => {
+    // alert("Time Up");
+  };
+
+  const onTimeUpOfHook = () => {
+    alert("Hook Component Time Up");
+  };
+
   /**
    * Huong dan su dung useState in Reactjs-Hook:
    * re-render
@@ -155,6 +168,9 @@ const App = () => {
       <header className="App-header">
         <Nav />
         <img src={logo} className="App-logo" alt="logo" />
+        <Countdown onTimeUp={onTimeUp} />
+        <span>--------------------------------------------------------</span>
+        <CountDownByHook onTimeUpOfHook={onTimeUpOfHook} />
         <p>Hello World By {name} !</p>
         {/* <Todo
           myData={todos}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useCovidFetch from "../customize/covidFetch";
+import moment from "moment";
 
 const Covid = () => {
   // const [dataCovid, setDataCovid] = useState([]);
@@ -10,13 +11,31 @@ const Covid = () => {
   // //dat bien chi error message
   // const [isError, setIsError] = useState(false);
 
+  //bien lay ngay hien tai
+  /**
+   * Lay ngay hien tai vao luc 0h 0m 0s
+   */
+  const today = new Date(new Date().setHours(0, 0, 0, 0));
+
+  //bien lay ngay cua 30 ngay truoc
+  const priorDate = moment().subtract(31, "days");
+
   //goi toi custom hook
+  // const {
+  //   data: dataCovid,
+  //   isLoading,
+  //   isError,
+  // } = useCovidFetch(
+  //   "https://api.covid19api.com/country/vietnam?from=2021-10-01T00:00:00Z&to=2021-10-20T00:00:00Z"
+  // );
+
+  //chinh lai API lay du lieu covid trong 30 ngay moi nhat ke tu ngay chay project
   const {
     data: dataCovid,
     isLoading,
     isError,
   } = useCovidFetch(
-    "https://api.covid19api.com/country/vietnam?from=2021-10-01T00:00:00Z&to=2021-10-20T00:00:00Z"
+    `https://api.covid19api.com/country/vietnam?from=${priorDate.toISOString()}&to=${today.toISOString()}`
   );
 
   /**

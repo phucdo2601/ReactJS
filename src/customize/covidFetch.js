@@ -53,7 +53,7 @@ const useCovidFetch = (url) => {
         // console.log(">>>error message:" + error.message);
       }
     }, 5000);
-  }, []);
+  }, [url]);
 
   return {
     data,
