@@ -1,15 +1,23 @@
-import axios from "axios";
-import moment from "moment";
 import { useEffect, useState } from "react";
+import useCovidFetch from "../customize/covidFetch";
 
 const Covid = () => {
-  const [dataCovid, setDataCovid] = useState([]);
+  // const [dataCovid, setDataCovid] = useState([]);
 
-  //dat bien chi trang thai isLoading
-  const [isLoading, setIsLoading] = useState(true);
+  // //dat bien chi trang thai isLoading
+  // const [isLoading, setIsLoading] = useState(true);
 
-  //dat bien chi error message
-  const [isError, setIsError] = useState(false);
+  // //dat bien chi error message
+  // const [isError, setIsError] = useState(false);
+
+  //goi toi custom hook
+  const {
+    data: dataCovid,
+    isLoading,
+    isError,
+  } = useCovidFetch(
+    "https://api.covid19api.com/country/vietnam?from=2021-10-01T00:00:00Z&to=2021-10-20T00:00:00Z"
+  );
 
   /**
    * Lay API data ve trong class component thi dung componentDidMount()
@@ -17,41 +25,6 @@ const Covid = () => {
    * Truyen mang rong trong useEffect de bao rang ham nay chi chay dung mot lan khi get dc du lieu ve(tuong duong componentDidMount())
    * Lan dau tien render chua chay vo useEffect, no se chay vao dom truoc, sau do no se chay vao useEffect r set DATA
    */
-
-  useEffect(async () => {
-    setTimeout(async () => {
-      try {
-        let res = await axios.get(
-          "https://api.covid19api.com/country/vietnam?from=2021-10-01T00:00:00Z&to=2021-10-20T00:00:00Z"
-        );
-
-        let data = res && res.data ? res.data : [];
-
-        if (data && data.length > 0) {
-          data.map((item) => {
-            item.Date = moment(item.Date).format("DD/MM/YYYY");
-          });
-
-          data = data.reverse();
-        }
-        console.log(">>> check set data: ", data);
-        setDataCovid(data);
-        setIsLoading(false);
-        setIsError(false);
-      } catch (error) {
-        // alert(error.message);
-
-        //khi co loi setIsError bang true
-        setIsError(true);
-        //khi khong load dc du lieu thi phai set isLoading === false de khong hien thi thong bao loading
-        setIsLoading(false);
-
-        // console.log("e >> check error: ", error);
-        // console.log(">>>error name: ", error.name);
-        // console.log(">>>error message:" + error.message);
-      }
-    }, 5000);
-  }, []);
 
   let x = 0;
 
