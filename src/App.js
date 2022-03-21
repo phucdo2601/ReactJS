@@ -10,6 +10,8 @@ import Covid from "./components/Covid";
 import { Countdown } from "./components/Countdown";
 import CountDownByHook from "./components/CountDownByHook";
 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 /**
  * Cai dat mot thu vien voi version xac dinh bang npm:
  * npm install --save nameLib@ver
@@ -155,24 +157,25 @@ const App = () => {
    * re-render
    */
   return (
-    <div className="App">
-      {/* Chi dung <Nav></Nav> Khi va chi khi muon chuyen noi dung co comp dc goi */}
-      {/* su dung map de lap => tra ve mot array moi, khong bi anh huong den dl ma minh lap */}
+    <Router>
+      <div className="App">
+        {/* Chi dung <Nav></Nav> Khi va chi khi muon chuyen noi dung co comp dc goi */}
+        {/* su dung map de lap => tra ve mot array moi, khong bi anh huong den dl ma minh lap */}
 
-      {/**
-       * props = properties => phuc vu cho viec chuyen du lieu giua cac component (Chi Chuyen du lieu tu component cha xuong con
-       *    top => bottom
-       * )
-       */}
+        {/**
+         * props = properties => phuc vu cho viec chuyen du lieu giua cac component (Chi Chuyen du lieu tu component cha xuong con
+         *    top => bottom
+         * )
+         */}
 
-      <header className="App-header">
-        <Nav />
-        <img src={logo} className="App-logo" alt="logo" />
-        <Countdown onTimeUp={onTimeUp} />
-        <span>--------------------------------------------------------</span>
-        <CountDownByHook onTimeUpOfHook={onTimeUpOfHook} />
-        <p>Hello World By {name} !</p>
-        {/* <Todo
+        <header className="App-header">
+          <Nav />
+          <img src={logo} className="App-logo" alt="logo" />
+          {/* <Countdown onTimeUp={onTimeUp} />
+          <span>--------------------------------------------------------</span>
+          <CountDownByHook onTimeUpOfHook={onTimeUpOfHook} />
+          <p>Hello World By {name} !</p> */}
+          {/* <Todo
           myData={todos}
           title={"All to do"}
           deleteDataTodo={deleteDataTodo}
@@ -198,9 +201,55 @@ const App = () => {
           Click Me
         </button> */}
 
-        <Covid />
-      </header>
-    </div>
+          {/* <Covid /> */}
+        </header>
+
+        <Routes>
+          <Route path="/" element={<Covid />} />
+
+          <Route
+            path="/timer"
+            element={
+              <>
+                <Countdown onTimeUp={onTimeUp} />
+                <span>
+                  --------------------------------------------------------
+                </span>
+                <CountDownByHook onTimeUpOfHook={onTimeUpOfHook} />
+              </>
+            }
+          />
+
+          <Route
+            path="/todo"
+            element={
+              <>
+                <Todo
+                  myData={todos}
+                  title={"All to do"}
+                  deleteDataTodo={deleteDataTodo}
+                />
+
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(event) => handleOnChangeInput(event)}
+                />
+
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    handleEventClick(event);
+                  }}
+                >
+                  Click Me
+                </button>
+              </>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

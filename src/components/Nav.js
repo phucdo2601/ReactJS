@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 // import "../styles/Nav.css";
 import "../styles/Nav.scss";
 
@@ -7,12 +8,10 @@ const Nav = () => {
   return (
     <>
       <div className="topnav">
-        <a className="active" href="#home">
-          Home
-        </a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/timer">Timer App</NavLink>
+        <NavLink to="/todo">Todo App</NavLink>
+        <NavLink to="/secret">Secret</NavLink>
       </div>
     </>
   );

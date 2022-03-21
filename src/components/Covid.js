@@ -49,58 +49,60 @@ const Covid = () => {
 
   return (
     <>
-      <h3>Covid 19 tracking in Vietnam!</h3>
+      <div>
+        <h3>Covid 19 tracking in Vietnam!</h3>
 
-      {/* {x > 5 ? <span>I'm greater than 5</span> : <span>I'm less than 5</span>} */}
+        {/* {x > 5 ? <span>I'm greater than 5</span> : <span>I'm less than 5</span>} */}
 
-      {/* {x > 5 && <span>I'm greater than 5</span>}
+        {/* {x > 5 && <span>I'm greater than 5</span>}
 
       {x < 5 && <span>I'm less than 5</span>} */}
 
-      <table>
-        {console.log(">>>check dataCovid: ", dataCovid)}
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Confirmed</th>
-            <th>Active</th>
-            <th>Deaths</th>
-            <th>Recovers</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isLoading === false &&
-            dataCovid &&
-            dataCovid.length > 0 &&
-            dataCovid.map((item) => {
-              return (
-                <tr key={item.ID}>
-                  <td>{item.Date}</td>
-                  <td>{item.Confirmed}</td>
-                  <td>{item.Active}</td>
-                  <td>{item.Deaths}</td>
-                  <td>{item.Recovered}</td>
-                </tr>
-              );
-            })}
-
-          {isError === false && isLoading === true && (
+        <table>
+          {console.log(">>>check dataCovid: ", dataCovid)}
+          <thead>
             <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
-                Loading...
-              </td>
+              <th>Date</th>
+              <th>Confirmed</th>
+              <th>Active</th>
+              <th>Deaths</th>
+              <th>Recovers</th>
             </tr>
-          )}
+          </thead>
+          <tbody>
+            {isLoading === false &&
+              dataCovid &&
+              dataCovid.length > 0 &&
+              dataCovid.map((item) => {
+                return (
+                  <tr key={item.ID}>
+                    <td>{item.Date}</td>
+                    <td>{item.Confirmed}</td>
+                    <td>{item.Active}</td>
+                    <td>{item.Deaths}</td>
+                    <td>{item.Recovered}</td>
+                  </tr>
+                );
+              })}
 
-          {isError === true && (
-            <tr>
-              <td colSpan="5" style={{ textAlign: "center", color: "red" }}>
-                Something Wrong....
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            {isError === false && isLoading === true && (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center" }}>
+                  Loading...
+                </td>
+              </tr>
+            )}
+
+            {isError === true && (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center", color: "red" }}>
+                  Something Wrong....
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
