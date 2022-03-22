@@ -9,6 +9,17 @@ class Countdown extends Component {
   };
 
   /**
+   * Trong truong hop dung class component
+   * Dung componentWillUnmount: trong truong hop chuyen tab nhanh: khi component khong con ton tai tren giao dien nua
+   * thi no se chay vao day
+   */
+  componentWillUnmount() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
+
+  /**
    * Sau khi render chay thi se chay componentDidMount:
    * componentDidMount chay sau khi chung ta render lan dau, se chen cac phan tu vao cay element
    */

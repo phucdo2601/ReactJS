@@ -19,40 +19,62 @@ const useCovidFetch = (url) => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    const ourRequest = axios.CancelToken.source(); // <-- 1st step
+
+    async function fetchData() {
+      /**
+       * dung try catch trong ham cua fetchData thi axios moi hieu
+       */
       try {
-        async function fetchData() {
-          // You can await here
-          let res = await axios.get(url);
+        // You can await here
+        let res = await axios.get(url, {
+          cancelToken: ourRequest.token,
+        });
 
-          let data = res && res.data ? res.data : [];
+        let data = res && res.data ? res.data : [];
 
-          if (data && data.length > 0) {
-            data.map((item) => {
-              item.Date = moment(item.Date).format("DD/MM/YYYY");
-            });
+        if (data && data.length > 0) {
+          data.map((item) => {
+            item.Date = moment(item.Date).format("DD/MM/YYYY");
+          });
 
-            data = data.reverse();
-          }
-          console.log(">>> check set data: ", data);
-          setData(data);
-          setIsLoading(false);
-          setIsError(false);
+          data = data.reverse();
         }
-        fetchData();
-      } catch (error) {
-        // alert(error.message);
-
-        //khi co loi setIsError bang true
-        setIsError(true);
-        //khi khong load dc du lieu thi phai set isLoading === false de khong hien thi thong bao loading
+        console.log(">>> check set data: ", data);
+        setData(data);
         setIsLoading(false);
+        setIsError(false);
+      } catch (error) {
+        /**
+         * Ham check cancel request
+         * Truong hop cancel thi chung ta se chay ham cancel axios
+         * Nguoc lai thi chung ta se tiep tuc chay cac chung nang loading va bat error
+         */
+        if (axios.isCancel(error)) {
+          console.log("Request canceled", error.message);
+        } else {
+          //khi co loi setIsError bang true
+          setIsError(true);
+          //khi khong load dc du lieu thi phai set isLoading === false de khong hien thi thong bao loading
+          setIsLoading(false);
 
-        // console.log("e >> check error: ", error);
-        // console.log(">>>error name: ", error.name);
-        // console.log(">>>error message:" + error.message);
+          // console.log("e >> check error: ", error);
+          // console.log(">>>error name: ", error.name);
+          // console.log(">>>error message:" + error.message);
+        }
       }
+    }
+
+    setTimeout(() => {
+      fetchData();
     }, 5000);
+
+    /**
+     * Neu chu tab nhanh cac tab ma chua load du lieu, thi chung ta cancel request axios de tranh ganh nang len server
+     */
+    return () => {
+      ourRequest.cancel("Operation canceled by the user.");
+    };
   }, [url]);
 
   return {
