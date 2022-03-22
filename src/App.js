@@ -11,6 +11,8 @@ import { Countdown } from "./components/Countdown";
 import CountDownByHook from "./components/CountDownByHook";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Blog from "./components/Blog";
+import DetailBlog from "./components/DetailBlog";
 
 /**
  * Cai dat mot thu vien voi version xac dinh bang npm:
@@ -137,11 +139,11 @@ const App = () => {
    *  Co the viec nhieu ham useEffect cung ko anh huong den viec chay code, giup dc clear code hon khi chay
    */
   useEffect(() => {
-    console.log("run use effect address edit text");
+    // console.log("run use effect address edit text");
   }, [address]);
 
   useEffect(() => {
-    console.log("run use effect todos");
+    // console.log("run use effect todos");
   }, [todos]);
 
   const onTimeUp = () => {
@@ -244,6 +246,24 @@ const App = () => {
                 >
                   Click Me
                 </button>
+              </>
+            }
+          />
+
+          <Route
+            path="/blogs"
+            element={
+              <>
+                <Blog />
+              </>
+            }
+          />
+
+          <Route
+            path="/blogs/:id"
+            element={
+              <>
+                <DetailBlog />
               </>
             }
           />

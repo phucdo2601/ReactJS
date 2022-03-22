@@ -1,0 +1,30 @@
+.blogs-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 14px;
+
+    .single-blog{
+        border: 1px solid grey;
+        border-radius: 3px;
+        padding: 10px;
+        margin: 0 10px;
+        max-width: 400px;
+
+        /**
+            Ghi de css cua lop cha: them ki tu !important sau khi hoan thien css ghi de 
+        */
+        text-align: left !important; 
+
+        .title{
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 10px;
+
+        }
+    }
+}

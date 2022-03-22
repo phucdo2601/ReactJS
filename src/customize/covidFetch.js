@@ -9,7 +9,7 @@ import moment from "moment";
  * Tach mot useEfect ra lam mot ham rieng de tai su o cac component khac
  * Ham nay no tra ve data
  */
-const useCovidFetch = (url) => {
+const useCovidFetch = (url, isCoviddata) => {
   const [data, setData] = useState([]);
 
   //dat bien chi trang thai isLoading
@@ -33,7 +33,7 @@ const useCovidFetch = (url) => {
 
         let data = res && res.data ? res.data : [];
 
-        if (data && data.length > 0) {
+        if (data && data.length > 0 && isCoviddata === true) {
           data.map((item) => {
             item.Date = moment(item.Date).format("DD/MM/YYYY");
           });
