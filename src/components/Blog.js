@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useCovidFetch from "../customize/covidFetch";
 import "../styles/Blog.scss";
 
@@ -13,6 +13,7 @@ const Blog = () => {
     isError,
   } = useCovidFetch(`https://jsonplaceholder.typicode.com/posts`, false);
 
+  let navigate = useNavigate();
   let newData = [];
 
   if (dataBlogs && dataBlogs.length > 0) {
@@ -20,9 +21,20 @@ const Blog = () => {
     console.log(">>> check blog data: ", newData);
   }
 
+  const handleAddNew = () => {
+    navigate("/add-new-blog");
+  };
+
   return (
     <>
       <h1>Hello Blogs</h1>
+
+      <div>
+        <button onClick={() => handleAddNew()} className="btn-add-new">
+          + Add New Blog
+        </button>
+      </div>
+
       <div className="blogs-container">
         {isLoading === false &&
           newData &&

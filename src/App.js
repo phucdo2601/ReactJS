@@ -13,6 +13,7 @@ import CountDownByHook from "./components/CountDownByHook";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Blog from "./components/Blog";
 import DetailBlog from "./components/DetailBlog";
+import AddNewBlog from "./components/AddNewBlog";
 
 /**
  * Cai dat mot thu vien voi version xac dinh bang npm:
@@ -264,6 +265,15 @@ const App = () => {
             element={
               <>
                 <DetailBlog />
+              </>
+            }
+          />
+
+          <Route
+            path="/add-new-blog"
+            element={
+              <>
+                <AddNewBlog />
               </>
             }
           />
