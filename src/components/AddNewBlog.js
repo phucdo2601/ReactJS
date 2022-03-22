@@ -5,38 +5,71 @@ const AddNewBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSubmitBtn = () => {
-    console.log(">>> check data state on add new blog form: ", title, content);
+  const handleSubmitBtn = (event) => {
+    event.preventDefault();
+    // console.log(">>> check data state on add new blog form: ", title, content);
+    /**
+     * Validate gia tri bang rong, bang null, bang undefined
+     */
+    if (title === "" || title === null || title === undefined) {
+      alert("Empty title. Please Input again!");
+      /**
+       * Dung cau lenh return khi validate xong cai nay thi ket thuc lun chu khong chay tiep
+       */
+      return;
+    }
+    /**
+     * Khi dung dau cham than thi no validate lun 3 cai o tren
+     */
+    if (!content) {
+      alert("Empty content. Please Input again!");
+      /**
+       * Dung cau lenh return khi validate xong cai nay thi ket thuc lun chu khong chay tiep
+       */
+      return;
+    }
+    console.log(
+      ">>> check data state before adding on add new blog form: ",
+      title,
+      content
+    );
   };
 
   return (
     <>
       <div className="add-new-container">
-        <div className="text-add-new">----Add New Blog-----</div>
-        <div className="inputs-data">
-          <label>Title: </label>
-          <input
-            type="text"
-            placeholder="Title"
-            value={title}
-            // bien event la cua web api dc dinh nghia san
-            onChange={(event) => setTitle(event.target.value)}
-          />
-        </div>
+        {/* form submit chuan trong js, onSubmit chinh la noi controlled form */}
+        <form onSubmit={(event) => handleSubmitBtn(event)}>
+          <div className="text-add-new">----Add New Blog-----</div>
+          <div className="inputs-data">
+            <label>Title: </label>
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              // bien event la cua web api dc dinh nghia san
+              onChange={(event) => setTitle(event.target.value)}
+            />
+          </div>
 
-        <div className="inputs-data">
-          <label>Content: </label>
-          <input
-            type="text"
-            placeholder="Content"
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-          />
-        </div>
+          <div className="inputs-data">
+            <label>Content: </label>
+            <input
+              type="text"
+              placeholder="Content"
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+            />
+          </div>
 
-        <button className="btn-add-new" onClick={() => handleSubmitBtn()}>
+          {/* <button className="btn-add-new" onClick={() => handleSubmitBtn()}>
           Submit
-        </button>
+        </button> */}
+
+          <button className="btn-add-new" type="submit">
+            Submit
+          </button>
+        </form>
       </div>
     </>
   );
