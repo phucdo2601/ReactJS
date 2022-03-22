@@ -40,7 +40,9 @@ const Blog = () => {
           })}
 
         {isLoading === true && (
-          <div style={{ textAlign: "center !important" }}>Loading blog....</div>
+          <div style={{ textAlign: "center !important", width: "100%" }}>
+            Loading blog....
+          </div>
         )}
       </div>
     </>
