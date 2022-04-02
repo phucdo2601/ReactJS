@@ -1,11 +1,12 @@
+import axios from "axios";
 import { useState } from "react";
 import "../styles/Blog.scss";
 
-const AddNewBlog = () => {
+const AddNewBlog = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSubmitBtn = (event) => {
+  const handleSubmitBtn = async (event) => {
     event.preventDefault();
     // console.log(">>> check data state on add new blog form: ", title, content);
     /**
@@ -28,11 +29,28 @@ const AddNewBlog = () => {
        */
       return;
     }
-    console.log(
-      ">>> check data state before adding on add new blog form: ",
-      title,
-      content
+
+    let data = {
+      title: title,
+      body: content,
+      userId: 1,
+    };
+
+    let res = await axios.post(
+      "https://jsonplaceholder.typicode.com/posts",
+      data
     );
+    if (res && res.data) {
+      let newBlogs = res.data;
+      props.handleAddNew(newBlogs);
+      // console.log(">>> check new blog data: ", newBlogs);
+    }
+
+    // console.log(
+    //   ">>> check data state before adding on add new blog form: ",
+    //   title,
+    //   content
+    // );
   };
 
   return (
