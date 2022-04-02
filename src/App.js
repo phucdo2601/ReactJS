@@ -14,6 +14,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Blog from "./components/Blog";
 import DetailBlog from "./components/DetailBlog";
 import AddNewBlog from "./components/AddNewBlog";
+import NotFound from "./components/NotFound";
 
 /**
  * Cai dat mot thu vien voi version xac dinh bang npm:
@@ -274,6 +275,15 @@ const App = () => {
             element={
               <>
                 <AddNewBlog />
+              </>
+            }
+          />
+
+          <Route
+            path="*"
+            element={
+              <>
+                <NotFound />
               </>
             }
           />
