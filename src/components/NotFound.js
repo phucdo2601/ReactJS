@@ -16,7 +16,7 @@ const NotFound = () => {
         the link you are trying to open is correct.
       </h5>
       <button
-        className="btn btn-primary"
+        className="btn btn-warning"
         onClick={() => handleClickGoHomePage()}
       >
         Go to HomePage

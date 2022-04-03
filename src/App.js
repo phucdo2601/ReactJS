@@ -15,6 +15,7 @@ import Blog from "./components/Blog";
 import DetailBlog from "./components/DetailBlog";
 import AddNewBlog from "./components/AddNewBlog";
 import NotFound from "./components/NotFound";
+import YoutubeSearch from "./components/YoutubeSearch";
 
 /**
  * Cai dat mot thu vien voi version xac dinh bang npm:
@@ -275,6 +276,15 @@ const App = () => {
             element={
               <>
                 <AddNewBlog />
+              </>
+            }
+          />
+
+          <Route
+            path="/secret"
+            element={
+              <>
+                <YoutubeSearch />
               </>
             }
           />
