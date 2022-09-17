@@ -9,6 +9,7 @@ import {
   Input,
   Label,
 } from "reactstrap";
+import NavbarComp from "../Navbars/NavbarComp";
 import ExcelImportTool from "./ExcelImportTool";
 
 const ReadExcel = () => {
@@ -49,6 +50,7 @@ const ReadExcel = () => {
 
   return (
     <>
+      <NavbarComp />
       <div className="content">
         <Row>
           <Col>

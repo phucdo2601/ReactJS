@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 import { getData, getArrData } from "../../services/fakeDatas/mockData";
 import * as XLSX from "xlsx/xlsx.mjs";
+import NavbarComp from "../Navbars/NavbarComp";
 
 const ExportExcel = () => {
   const [sheetData, setSheetData] = useState(null);
@@ -49,6 +50,7 @@ const ExportExcel = () => {
 
   return (
     <>
+      <NavbarComp />
       <div className="content">
         <Row>
           <Col>

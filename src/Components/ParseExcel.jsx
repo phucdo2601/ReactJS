@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as XLSX from "xlsx/xlsx.mjs";
+import NavbarComp from "./Navbars/NavbarComp";
 const ParseExcel = () => {
   const [fileName, setFileName] = useState(null);
   const [columns, setColumns] = useState([]);
@@ -24,6 +25,7 @@ const ParseExcel = () => {
 
   return (
     <>
+      <NavbarComp />
       <div>
         <h1>Parse Excel</h1>
         {fileName && (
