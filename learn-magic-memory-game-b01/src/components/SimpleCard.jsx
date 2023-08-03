@@ -1,8 +1,10 @@
 import React from "react";
 import "./SimpleCard.css";
-const SimpleCard = ({ card, handleChoice, flipped }) => {
+const SimpleCard = ({ card, handleChoice, flipped, disabled }) => {
   const handleClick = () => {
-    handleChoice(card);
+    if (!disabled) {
+      handleChoice(card);
+    }
   };
 
   return (
