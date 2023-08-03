@@ -1,6 +1,6 @@
 import React from "react";
 import "./SimpleCard.css";
-const SimpleCard = ({ card, handleChoice }) => {
+const SimpleCard = ({ card, handleChoice, flipped }) => {
   const handleClick = () => {
     handleChoice(card);
   };
@@ -8,7 +8,7 @@ const SimpleCard = ({ card, handleChoice }) => {
   return (
     <>
       <div className="card" key={card.id}>
-        <div>
+        <div className={flipped ? "flipped" : ""}>
           <img className="front" src={card.src} alt="Card front" />
           <img
             className="back"
