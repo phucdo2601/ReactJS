@@ -1,10 +1,11 @@
 import React from 'react'
 import Cell from './Cell'
+import { StyledStage } from './styles/StyledStage'
 
 const Stage = ({stage}) => {
   return (
     <>
-      <div>
+       <StyledStage width={stage[0].length} height={stage.length}>
         {
           stage.map((row) => row.map((cell, x) => {
             return (
@@ -14,7 +15,7 @@ const Stage = ({stage}) => {
             )
           }))
         }
-      </div>
+      </StyledStage>
     </>
   )
 }
