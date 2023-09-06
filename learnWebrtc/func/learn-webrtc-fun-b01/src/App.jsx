@@ -1,12 +1,40 @@
 import {useRef, useEffect} from 'react';
+import io from 'socket.io-client';
+
+
+const socket = io(
+  '/webRTCPeers',
+  {
+    path: '/webrtc',
+  }
+)
 
 function App() {
   const localVideoRef = useRef();
   const remoteVideoRef = useRef();
   const pc = useRef(new RTCPeerConnection(null));
   const textRef = useRef();
+  const candicates = useRef([]);
+
 
   useEffect(()=> {
+    //print connection status with server
+    socket.on('connection-success', success => {
+      console.log(success);
+    })
+
+    //print the sdp to get from server
+    socket.on('sdp', data => {
+      console.log(data);
+      textRef.current.value = JSON.stringify(data.sdp);
+    });
+
+    //add another candicate on call
+    socket.on('candicate', candicate => {
+      console.log(candicate);
+      candicates.current = [ ...candicates.current, candicate];
+    })
+
     const constranits = {
       audio: false,
       video: true,
@@ -28,6 +56,8 @@ function App() {
       _pc.onicecandidate = (e) => {
         if (e.candidate) {
           console.log(JSON.stringify(e.candidate));
+
+          socket.emit('candicate', e.candidate);
         }
       }
 
@@ -51,6 +81,11 @@ function App() {
       console.log(JSON.stringify(sdp));
       pc.current.setLocalDescription(sdp);
 
+      // send the sdp on the server
+      socket.emit('sdp', {
+        sdp, 
+      });
+
     }).catch((e) => console.log(e))
   }
 
@@ -62,6 +97,10 @@ function App() {
       console.log(JSON.stringify(sdp));
       pc.current.setLocalDescription(sdp);
 
+      //send the answer sdp to the offering peer
+      socket.emit('sdp', {
+        sdp,
+      });
     }).catch((e) => console.log(e))
   }
 
@@ -74,10 +113,14 @@ function App() {
   }
 
   const addCandicate = () => {
-    const candicate = JSON.parse(textRef.current.value);
-    console.log('Adding Candicate...', candicate);
+    // const candicate = JSON.parse(textRef.current.value);
+    // console.log('Adding Candicate...', candicate);
+    
+    candicates.current.forEach(candicate => {
+      console.log(candicate);
+      pc.current.addIceCandidate(new RTCIceCandidate(candicate));
+    })
 
-    pc.current.addIceCandidate(new RTCIceCandidate(candicate));
   }
 
   return (
