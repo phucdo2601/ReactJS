@@ -21,6 +21,7 @@ const SearchEmployeePage = () => {
       <SearchAppBar
         setListEmployee={setListEmployeeData}
         setLoadingStatus={setLoadingStatus}
+        listEmployee={listEmployee}
       />
       <DataDisplayGrid listEmployee={listEmployee} loading={loading} />
       <FooterComp />

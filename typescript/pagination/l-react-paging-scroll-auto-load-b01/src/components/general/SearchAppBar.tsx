@@ -10,6 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import EmployeeApi from "../../apis/employees/EmployeeApi";
 import { PagingEmployeeResModel } from "../../models/response/PagingEmployeeResModel";
+import { EmployeeResModel } from "../../models/base/EmployeeResModel";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -56,24 +57,33 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 interface SearchAppBarProps {
   setListEmployee: (data: any) => void;
   setLoadingStatus: (data: boolean) => void;
+  listEmployee: EmployeeResModel[];
 }
 
 export default function SearchAppBar({
   setListEmployee,
   setLoadingStatus,
+  listEmployee,
 }: SearchAppBarProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [pageNum, setPageNum] = useState<number>(1);
+  const [totalRecords, setTotalRecords] = useState<number>(0);
 
-  const handleChangeSearchInp = (e: any) => {
+  // console.log(listEmployee.length);
+  console.log(totalRecords);
+
+  const lengthListEmp = listEmployee.length;
+
+  /**
+   * Function handle searching when user changes search field
+   */
+  const handleChangeSearchInp = async (e: any) => {
+    setLoadingStatus(true);
     setSearchQuery(e.target.value);
-    console.log(searchQuery);
-  };
-
-  const handleSearchPaging = async (pageNum?: number) => {
-    await EmployeeApi.searchEmployeePaging(searchQuery!, pageNum)
+    await EmployeeApi.searchEmployeePaging(searchQuery, pageNum)
       .then((res: PagingEmployeeResModel) => {
-        setListEmployee((prev: any) => [...prev, ...res.data.employees]);
+        setListEmployee(res.data.employees);
+        setTotalRecords(res.data.totalRecords);
         setLoadingStatus(false);
       })
       .catch((err) => {
@@ -81,9 +91,40 @@ export default function SearchAppBar({
       });
   };
 
+  const handleSearchPaging = async (pageNum?: number) => {
+    await EmployeeApi.searchEmployeePaging(searchQuery!, pageNum)
+      .then((res: PagingEmployeeResModel) => {
+        setListEmployee((prev: any) => [...prev, ...res.data.employees]);
+        setTotalRecords(res.data.totalRecords);
+        setLoadingStatus(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  /**
+   * This useEffect use for load more data when changing pageNum in this situation: Scrolling with handleInfiniteScroll() func
+   */
+  useEffect(() => {
+    /**
+     *
+     */
+    if (totalRecords > lengthListEmp) {
+      /**
+       * In this case: when passing the previous condition the app will diplay loading spinner and after that execution function
+       */
+      setLoadingStatus(true);
+      setTimeout(handleSearchPaging, 2000, pageNum);
+    }
+  }, [pageNum]);
+
+  /**
+   * This function when load first list data emp when intialization load page.
+   */
   useEffect(() => {
     handleSearchPaging(pageNum);
-  }, [pageNum]);
+  }, []);
 
   /**
    *  This function for set new page number for calling api by the scrooling gesture
@@ -103,7 +144,7 @@ export default function SearchAppBar({
     console.log("scrollTop" + scrollTop);
     try {
       if (innerHeight + scrollTop + increaseHeight >= scrollHeight) {
-        setLoadingStatus(true);
+        // setLoadingStatus(true);
         setPageNum((prev) => prev + 1);
       }
     } catch (error) {

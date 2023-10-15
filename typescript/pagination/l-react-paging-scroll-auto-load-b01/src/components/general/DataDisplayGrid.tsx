@@ -37,7 +37,14 @@ export default function DataDisplayGrid({
         </Grid>
         {loading && (
           <>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "50px",
+              }}
+            >
               <CircularProgress />
             </Box>
           </>
