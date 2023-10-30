@@ -8,6 +8,7 @@ import LeanUseCallback from './listHooks/LeanUseCallback'
 import LearnUseImperativeHandle from './listHooks/LearnUseImperativeHandle'
 import LearnUseMemo from './listHooks/LearnUseMemo'
 import LearnUseLayoutEffect from './listHooks/LearnUseLayoutEffect'
+import LearnUseTransition from './listHooks/LearnUseTransition'
 
 const App = () => {
   return (
@@ -20,7 +21,8 @@ const App = () => {
       {/* <LeanUseCallback /> */}
       {/* <LearnUseImperativeHandle /> */}
       {/* <LearnUseMemo /> */}
-      <LearnUseLayoutEffect />
+      {/* <LearnUseLayoutEffect /> */}
+      <LearnUseTransition />
     </>
   )
 }
