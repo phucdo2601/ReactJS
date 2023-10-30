@@ -3,6 +3,7 @@ import LearnUseStateHook from './listHooks/LearnUseStateHook'
 import LearnUseEffect from './listHooks/LearnUseEffect'
 import LearnUseContex from './listHooks/LearnUseContex'
 import LearnUseReducer from './listHooks/LearbUseReducer'
+import LearnUseRef from './listHooks/LearnUseRef'
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
       {/* <LearnUseStateHook /> */}
       {/* <LearnUseEffect /> */}
       {/* <LearnUseContex /> */}
-      <LearnUseReducer />
+      {/* <LearnUseReducer /> */}
+      <LearnUseRef />
     </>
   )
 }
