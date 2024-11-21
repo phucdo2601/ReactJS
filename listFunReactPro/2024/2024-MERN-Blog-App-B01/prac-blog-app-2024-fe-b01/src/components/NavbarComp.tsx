@@ -16,7 +16,7 @@ const NavbarComp = () => {
             {/* LOGO */}
             <Link to={`/`} className="flex items-center gap-4 rtext-2xl font-bold">
                 <ImageComp
-                    src='https://ik.imagekit.io/ua3deylp8/logo.png'
+                    src='logo.png'
                     alt='Image Logo App'
                     w={32}
                     h={32}
